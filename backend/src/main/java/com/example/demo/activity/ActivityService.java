@@ -1,10 +1,12 @@
 package com.example.demo.activity;
 
+import org.hibernate.resource.transaction.spi.DdlTransactionIsolator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +24,7 @@ public class ActivityService {
         if (activityRepository.findByDescription(activity.getDescription()).isPresent()) {
             throw new RuntimeException("Activity with this description already exists");
         }
-        activity.setDate(LocalDate.now());
+        if(activity.getDate() == null) activity.setDate(LocalDate.now());
         activityRepository.save(activity);
     }
 
@@ -99,5 +101,17 @@ public class ActivityService {
         } else {
             activityRepository.delete(foundedActivity.get());
         }
+    }
+
+    public List<String> getProjects(String date) {
+        List<String> projects = new ArrayList<>();
+        for(Activity activity: activityRepository.findAll() ){
+            if(activity.getProjectName() != null
+                    && !projects.contains(activity.getProjectName())
+            && activity.getDate().isEqual(LocalDate.parse(date))){
+                projects.add(activity.getProjectName());
+            }
+        }
+        return projects;
     }
 }

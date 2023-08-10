@@ -2,6 +2,8 @@ package com.example.demo.activity;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,19 +20,18 @@ public class ActivityController {
     }
 
     @PostMapping
-    public String createActivity(@RequestBody @Valid Activity activity) {
-        try {
-            activityService.createActivity(activity);
-            return "Activity added";
-        } catch (RuntimeException e) {
-            return e.getMessage();
-        }
+    public void createActivity(@RequestBody @Valid Activity activity) {
+        activityService.createActivity(activity);
     }
 
     @GetMapping
     public List<Activity> getActivities(@RequestParam(required = false) String project,
                                         @RequestParam(required = false) String date) {
         return activityService.getActivities(project, date);
+    }
+    @GetMapping("/projects/{date}")
+    public List<String> getProjectsByDate(@PathVariable String date) {
+        return activityService.getProjects(date);
     }
 
     @GetMapping("/{id}")
@@ -56,12 +57,7 @@ public class ActivityController {
     }
 
     @DeleteMapping("/{id}")
-    public String removeActivity(@PathVariable Long id) {
-        try {
-            activityService.removeActivity(id);
-            return "Activity deleted";
-        } catch (RuntimeException e) {
-            return e.getMessage();
-        }
+    public void removeActivity(@PathVariable Long id) {
+        activityService.removeActivity(id);
     }
 }
