@@ -1,0 +1,7 @@
+<div class="custom-navigation">
+  <button class="nav-button previous" (click)="goToPrevious()">Previous</button>
+  <div class="date-display">{{ currentDate }}</div>
+  <button *ngIf="hasNextDay" class="nav-button next" (click)="goToNext()">
+    Next
+  </button>
+</div>

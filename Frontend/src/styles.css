@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Roboto';
+    src:url('src/assets/Roboto-Medium.ttf') format('ttf');
+         
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }

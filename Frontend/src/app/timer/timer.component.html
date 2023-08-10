@@ -1,0 +1,21 @@
+<div class="stopwatch">
+  <h1>{{ currentTime | date : "HH:mm:ss" : "UTC" }}</h1>
+  <div class="buttons">
+    <button
+      *ngIf="!running"
+      (click)="startTimer()"
+      [disabled]="running"
+      class="play-button"
+    >
+      <i class="fas fa-play"></i>
+    </button>
+    <button
+      *ngIf="running"
+      (click)="stopTimer()"
+      [disabled]="!running"
+      class="stop-button"
+    >
+      <i class="fas fa-stop"></i>
+    </button>
+  </div>
+</div>

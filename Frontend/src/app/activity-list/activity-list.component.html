@@ -1,0 +1,18 @@
+<div class="filter-container">
+  <select id="filtering" [(ngModel)]="selectedFilterOption">
+    <option value="" disabled selected hidden>Choose filter...</option>
+    <option value="all">All</option>
+    <option value="withoutProject">Without project</option>
+    <option *ngFor="let project of projects" value="{{ project }}">
+      {{ project }}
+    </option>
+  </select>
+  <button class="generate-pdf-button" (click)="generatePDF()">
+    Generate PDF
+  </button>
+</div>
+<ul class="item-list store--item-list">
+  <li *ngFor="let activity of getActivities()">
+    <app-activity [activity]="activity"></app-activity>
+  </li>
+</ul>

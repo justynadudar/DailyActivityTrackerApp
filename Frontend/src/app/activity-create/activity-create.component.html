@@ -1,0 +1,30 @@
+<form [formGroup]="activityForm" (ngSubmit)="submit()">
+  <h1>Create activity</h1>
+  <div class="input-container">
+    <input
+      type="text"
+      name="description"
+      formControlName="description"
+      placeholder="Description"
+    />
+  </div>
+  <div class="add-project-container">
+    <p
+      *ngIf="!showProjectInput"
+      class="add-project-text"
+      (click)="showProjectInput = !showProjectInput"
+    >
+      + Add Project
+    </p>
+    <input
+      *ngIf="showProjectInput"
+      type="text"
+      name="project"
+      formControlName="project"
+      placeholder="Enter project"
+    />
+  </div>
+  <div class="button-container">
+    <button [disabled]="!activityForm.valid" type="submit">Create</button>
+  </div>
+</form>

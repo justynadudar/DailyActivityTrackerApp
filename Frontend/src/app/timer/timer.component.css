@@ -1,0 +1,36 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+.stopwatch {
+    display: flex;
+    align-items: center;
+  }
+  
+  .buttons {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  .play-button, .stop-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .play-button {
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .stop-button {
+    border-radius: 50%;
+    background-color: #dc3545;
+    color: white;
+  }
+  

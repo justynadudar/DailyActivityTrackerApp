@@ -1,0 +1,75 @@
+<div class="activity-container">
+  <button class="remove-button" (click)="removeActivity()">Remove</button>
+  <div class="activity-details">
+    <div *ngIf="!editDescOn" class="div-description">
+      <p class="description">{{ activity!.description }}</p>
+      <div class="icon-wrapper">
+        <i
+          class="edit-icon fas fa-pencil-alt"
+          title="Edit"
+          (click)="editDescriptionOn()"
+        ></i>
+      </div>
+    </div>
+
+    <div *ngIf="editDescOn" class="input-button-wrapper">
+      <input
+        [(ngModel)]="description"
+        type="text"
+        name="project"
+        class="input-field"
+      />
+      <button class="add-button" (click)="editDescription()">Edit</button>
+    </div>
+    <div *ngIf="isProject && !editProjectOn">
+      <p class="project">{{ activity!.projectName }}</p>
+      <div class="icon-wrapper">
+        <i
+          class="edit-icon fas fa-pencil-alt"
+          title="Edit"
+          (click)="editOn()"
+        ></i>
+      </div>
+    </div>
+    <div *ngIf="editProjectOn" class="input-button-wrapper">
+      <input
+        [(ngModel)]="project"
+        type="text"
+        name="project"
+        placeholder="Enter project"
+        class="input-field"
+      />
+      <button class="add-button" (click)="editProject()">Edit</button>
+    </div>
+    <div class="add-project-container">
+      <div class="add-project-wrapper">
+        <p
+          *ngIf="!showProjectInput && !isProject"
+          class="add-project-text"
+          (click)="showProjectInput = !showProjectInput"
+        >
+          + Add Project
+        </p>
+        <div
+          *ngIf="showProjectInput && !isProject"
+          class="input-button-wrapper"
+        >
+          <input
+            [(ngModel)]="project"
+            type="text"
+            name="project"
+            placeholder="Enter project"
+            class="input-field"
+          />
+          <button class="add-button" (click)="addProject()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="timer">
+    <app-timer
+      [time]="activity!.time"
+      (updateTime)="updateTime($event)"
+    ></app-timer>
+  </div>
+</div>
